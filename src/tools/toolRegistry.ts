@@ -13,7 +13,7 @@ export class ToolRegistry {
   private logger: Logger;
 
   constructor(
-    private context: vscode.ExtensionContext,
+    _context: vscode.ExtensionContext,
     private auditLogger: AuditLogger,
     debugMode: boolean = false
   ) {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { StateManager } from '../../../src/state/stateManager.js';
-import { ExtensionState, StateSubscriber } from '../../../src/types/index.js';
-import { createMockExtensionContext } from '../../helpers/mocks.js';
+import { StateManager } from '../../../src/state/stateManager';
+import { ExtensionState, StateSubscriber } from '../../../src/types/index';
+import { createMockExtensionContext } from '../../helpers/mocks';
 
 describe('StateManager', () => {
   let stateManager: StateManager;

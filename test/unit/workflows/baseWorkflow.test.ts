@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { BaseWorkflow } from '../../../src/workflows/baseWorkflow.js';
-import { Analysis, ActionResult, Observations, AgentRequest } from '../../../src/types/index.js';
+import { BaseWorkflow } from '../../../src/workflows/baseWorkflow';
+import { Analysis, ActionResult, Observations, AgentRequest } from '../../../src/types/index';
 
 class TestWorkflow extends BaseWorkflow {
   readonly id = 'test_workflow';
@@ -9,6 +9,11 @@ class TestWorkflow extends BaseWorkflow {
   public thinkCalled = false;
   public actCalled = false;
   public observeCalled = false;
+
+  constructor(request: AgentRequest, debugMode: boolean = false) {
+    super(request, debugMode);
+    this.initializeLogger();
+  }
 
   async think(): Promise<Analysis> {
     this.thinkCalled = true;

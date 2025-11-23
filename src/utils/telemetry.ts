@@ -10,7 +10,7 @@ export class TelemetryManager {
   private enabled: boolean;
   private events: TelemetryEvent[] = [];
 
-  constructor(private config: ExtensionConfig) {
+  constructor(config: ExtensionConfig) {
     this.logger = new Logger('TelemetryManager', config.debugMode);
     this.enabled = config.telemetryEnabled;
   }

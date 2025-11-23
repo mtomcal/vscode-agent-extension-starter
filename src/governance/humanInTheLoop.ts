@@ -207,7 +207,7 @@ export class HumanInTheLoopManager {
   /**
    * Check if action should be auto-denied
    */
-  private shouldAutoDeny(action: ProposedAction): boolean {
+  private shouldAutoDeny(_action: ProposedAction): boolean {
     // Add custom logic for auto-denial
     // For now, never auto-deny
     return false;
@@ -278,7 +278,7 @@ export class HumanInTheLoopManager {
    */
   dispose(): void {
     // Clear all pending approvals
-    for (const [requestId, handler] of this.approvalHandlers) {
+    for (const [_requestId, handler] of this.approvalHandlers) {
       clearTimeout(handler.timeout);
       handler.resolve(false);
     }

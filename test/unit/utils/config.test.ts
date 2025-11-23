@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ConfigurationManager } from '../../../src/utils/config.js';
+import { ConfigurationManager } from '../../../src/utils/config';
 
 describe('ConfigurationManager', () => {
   let configManager: ConfigurationManager;

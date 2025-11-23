@@ -16,6 +16,7 @@ export class SampleWorkflow extends BaseWorkflow {
 
   constructor(request: AgentRequest, debugMode: boolean = false) {
     super(request, debugMode);
+    this.initializeLogger();
   }
 
   async think(): Promise<Analysis> {
@@ -159,7 +160,7 @@ export class SampleWorkflow extends BaseWorkflow {
     return observations;
   }
 
-  private async simulateAction(step: WorkflowStep): Promise<void> {
+  private async simulateAction(_step: WorkflowStep): Promise<void> {
     // Simulate some work
     await new Promise((resolve) => setTimeout(resolve, 100));
 

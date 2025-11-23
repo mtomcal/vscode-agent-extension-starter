@@ -14,7 +14,7 @@ export class AuditLogger {
 
   constructor(
     private context: vscode.ExtensionContext,
-    private config: ExtensionConfig
+    config: ExtensionConfig
   ) {
     this.logger = new Logger('AuditLogger', config.debugMode);
     this.loadLogs();

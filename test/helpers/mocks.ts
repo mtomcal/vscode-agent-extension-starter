@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { ToolContext } from '../../src/types/index.js';
+import { ToolContext } from '../../src/types/index';
 
 /**
  * Mock VSCode Extension Context

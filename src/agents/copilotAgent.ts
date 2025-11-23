@@ -135,7 +135,7 @@ export class CopilotAgent extends BaseAgent {
     request: vscode.ChatRequest,
     context: vscode.ChatContext,
     stream: vscode.ChatResponseStream,
-    token: vscode.CancellationToken
+    _token: vscode.CancellationToken
   ): Promise<void> {
     stream.progress('Analyzing request...');
 
@@ -230,7 +230,7 @@ export class CopilotAgent extends BaseAgent {
     request: vscode.ChatRequest,
     context: vscode.ChatContext,
     stream: vscode.ChatResponseStream,
-    token: vscode.CancellationToken
+    _token: vscode.CancellationToken
   ): Promise<void> {
     stream.progress('Processing request...');
 

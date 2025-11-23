@@ -20,8 +20,8 @@ export class AgentDashboardProvider implements vscode.WebviewViewProvider {
 
   public resolveWebviewView(
     webviewView: vscode.WebviewView,
-    context: vscode.WebviewViewResolveContext,
-    token: vscode.CancellationToken
+    _context: vscode.WebviewViewResolveContext,
+    _token: vscode.CancellationToken
   ): void {
     webviewView.webview.options = {
       enableScripts: true,

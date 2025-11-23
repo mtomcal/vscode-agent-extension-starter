@@ -15,14 +15,23 @@ export abstract class BaseWorkflow implements Workflow {
   abstract readonly id: string;
   abstract readonly name: string;
 
-  protected logger: Logger;
+  protected logger!: Logger;
   protected request: AgentRequest;
   protected iterations: number = 0;
   protected maxIterations: number = 3;
+  protected debugMode: boolean;
 
   constructor(request: AgentRequest, debugMode: boolean = false) {
     this.request = request;
-    this.logger = new Logger(`Workflow:${this.name}`, debugMode);
+    this.debugMode = debugMode;
+    // Logger will be initialized by subclass after name is set
+  }
+
+  /**
+   * Initialize logger - must be called by subclass constructor
+   */
+  protected initializeLogger(): void {
+    this.logger = new Logger(`Workflow:${this.name}`, this.debugMode);
   }
 
   /**

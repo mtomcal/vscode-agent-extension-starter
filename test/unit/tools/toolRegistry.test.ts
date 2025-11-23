@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { ToolRegistry } from '../../../src/tools/toolRegistry.js';
-import { BaseTool } from '../../../src/tools/baseTool.js';
-import { AuditLogger } from '../../../src/governance/auditLogger.js';
-import { ToolContext, ToolParameterSchema, ToolResult } from '../../../src/types/index.js';
-import { createMockExtensionContext, createMockToolContext } from '../../helpers/mocks.js';
+import { ToolRegistry } from '../../../src/tools/toolRegistry';
+import { BaseTool } from '../../../src/tools/baseTool';
+import { AuditLogger } from '../../../src/governance/auditLogger';
+import { ToolContext, ToolParameterSchema, ToolResult } from '../../../src/types/index';
+import { createMockExtensionContext, createMockToolContext } from '../../helpers/mocks';
 
 class MockTool extends BaseTool {
   readonly id = 'mock_tool';

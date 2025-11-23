@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Logger } from '../../../src/utils/logger.js';
+import { Logger } from '../../../src/utils/logger';
 
 describe('Logger', () => {
   let logger: Logger;

@@ -54,9 +54,9 @@ export abstract class BaseAgent {
    * Provide follow-up suggestions for chat
    */
   protected async provideFollowups(
-    result: vscode.ChatResult,
-    context: vscode.ChatContext,
-    token: vscode.CancellationToken
+    _result: vscode.ChatResult,
+    _context: vscode.ChatContext,
+    _token: vscode.CancellationToken
   ): Promise<vscode.ChatFollowup[]> {
     return [
       {
@@ -105,7 +105,7 @@ export abstract class BaseAgent {
   /**
    * Check if the agent should handle this request
    */
-  protected shouldHandle(request: vscode.ChatRequest): boolean {
+  protected shouldHandle(_request: vscode.ChatRequest): boolean {
     // Override in subclasses for custom logic
     return true;
   }

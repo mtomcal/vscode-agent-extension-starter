@@ -1,6 +1,4 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs/promises';
-import * as path from 'path';
 import { Logger } from '../utils/logger.js';
 
 /**
@@ -59,7 +57,8 @@ export class PersistenceManager {
     try {
       const filePath = vscode.Uri.joinPath(storageUri, filename);
       const content = await vscode.workspace.fs.readFile(filePath);
-      const data = JSON.parse(content.toString('utf-8'));
+      const textDecoder = new TextDecoder('utf-8');
+      const data = JSON.parse(textDecoder.decode(content));
 
       this.logger.debug(`Data loaded from workspace: ${filename}`);
       return data;
@@ -164,7 +163,8 @@ export class PersistenceManager {
     try {
       const filePath = vscode.Uri.joinPath(storageUri, filename);
       const content = await vscode.workspace.fs.readFile(filePath);
-      const data = JSON.parse(content.toString('utf-8'));
+      const textDecoder = new TextDecoder('utf-8');
+      const data = JSON.parse(textDecoder.decode(content));
 
       this.logger.debug(`Data loaded from global storage: ${filename}`);
       return data;

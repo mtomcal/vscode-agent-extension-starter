@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { BaseTool } from '../../../src/tools/baseTool.js';
-import { ToolContext, ToolParameterSchema, ToolResult } from '../../../src/types/index.js';
-import { createMockToolContext } from '../../helpers/mocks.js';
+import { BaseTool } from '../../../src/tools/baseTool';
+import { ToolContext, ToolParameterSchema, ToolResult } from '../../../src/types/index';
+import { createMockToolContext } from '../../helpers/mocks';
 
 class TestTool extends BaseTool {
   readonly id = 'test_tool';
