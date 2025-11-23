@@ -1,0 +1,22 @@
+# VSCode Extension Ignore
+# Files to exclude from the extension package
+
+.vscode/**
+.vscode-test/**
+src/**
+test/**
+.gitignore
+.eslintrc.json
+.prettierrc
+webpack.config.js
+tsconfig.json
+**/*.map
+**/*.ts
+!dist/**/*.d.ts
+node_modules/**
+scripts/**
+docs/**
+CONTRIBUTING.md
+CHANGELOG.md
+.github/**
+*.vsix

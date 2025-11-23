@@ -1,0 +1,21 @@
+{
+  "files.exclude": {
+    "out": false,
+    "dist": false,
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
+    "**/**.js": {
+      "when": "$(basename).tsx"
+    }
+  },
+  "search.exclude": {
+    "out": true,
+    "dist": true,
+    "node_modules": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
+}

@@ -1,0 +1,168 @@
+{
+  "name": "vscode-agent-extension-starter",
+  "displayName": "VSCode Agent Extension Starter",
+  "description": "A comprehensive starter template for building VSCode extensions with GitHub Copilot Chat integration, featuring agentic workflows and advanced UI patterns",
+  "version": "0.0.1",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": [
+    "Other",
+    "AI",
+    "Chat"
+  ],
+  "keywords": [
+    "agent",
+    "copilot",
+    "ai",
+    "chat",
+    "workflow"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "agent.assistant",
+        "name": "agent",
+        "description": "AI-powered coding assistant with agentic capabilities",
+        "isSticky": true,
+        "commands": [
+          {
+            "name": "execute",
+            "description": "Execute a workflow with Think-Act-Observe pattern"
+          },
+          {
+            "name": "tools",
+            "description": "List available tools"
+          },
+          {
+            "name": "status",
+            "description": "Show current workflow status"
+          }
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "agent.showDashboard",
+        "title": "Agent: Show Dashboard",
+        "category": "Agent"
+      },
+      {
+        "command": "agent.createAgent",
+        "title": "Agent: Create New Agent",
+        "category": "Agent"
+      },
+      {
+        "command": "agent.registerTool",
+        "title": "Agent: Register Tool",
+        "category": "Agent"
+      },
+      {
+        "command": "agent.clearState",
+        "title": "Agent: Clear State",
+        "category": "Agent"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "agent-explorer",
+          "title": "Agent",
+          "icon": "media/agent-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "agent-explorer": [
+        {
+          "type": "webview",
+          "id": "agent.dashboard",
+          "name": "Dashboard"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Agent Extension",
+      "properties": {
+        "agentExtension.enableTelemetry": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable anonymous telemetry to improve the extension"
+        },
+        "agentExtension.debugMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable debug logging"
+        },
+        "agentExtension.approvalTimeout": {
+          "type": "number",
+          "default": 30000,
+          "description": "Timeout for human approval requests in milliseconds"
+        },
+        "agentExtension.maxConcurrentWorkflows": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Maximum number of concurrent workflows"
+        },
+        "agentExtension.autoApproveReadOnly": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically approve read-only operations"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "mocha --require ts-node/register 'test/unit/**/*.test.ts'",
+    "test:integration": "vscode-test",
+    "lint": "eslint src --ext ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.ts\"",
+    "create-agent": "node scripts/create-agent.js",
+    "setup": "node scripts/setup.js"
+  },
+  "dependencies": {
+    "@vscode/webview-ui-toolkit": "^1.4.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/sinon": "^17.0.2",
+    "@types/uuid": "^9.0.7",
+    "@types/vscode": "^1.94.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "chai": "^4.3.10",
+    "eslint": "^8.56.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "prettier": "^3.1.1",
+    "sinon": "^17.0.1",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
