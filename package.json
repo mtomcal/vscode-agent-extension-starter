@@ -129,6 +129,7 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "mocha --require tsx/cjs --require test/setup.ts 'test/unit/**/*.test.ts'",
+    "test:unit:coverage": "nyc --reporter=text --reporter=html --reporter=lcov npm run test:unit",
     "test:integration": "vscode-test",
     "lint": "eslint src --ext ts",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -141,6 +142,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/chai": "^4.3.11",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.6",
@@ -159,6 +161,7 @@
     "nyc": "^15.1.0",
     "prettier": "^3.1.1",
     "sinon": "^17.0.1",
+    "source-map-support": "^0.5.21",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.6",
