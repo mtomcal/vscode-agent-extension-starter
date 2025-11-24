@@ -98,15 +98,8 @@ export class TodoAgent extends BaseAgent {
         token: vscode.CancellationToken
     ): Promise<void> {
         try {
-            // Use VS Code's Language Model API with tool calling
-            const models = await vscode.lm.selectChatModels({ family: 'gpt-4o' });
-            
-            if (models.length === 0) {
-                stream.markdown('❌ No language model available. Please ensure GitHub Copilot is enabled.\n');
-                return;
-            }
-
-            const model = models[0];
+            // Use the model selected in the UI (from the request)
+            const model = request.model;
 
             // Define tools for the LLM to use
             const tools: vscode.LanguageModelChatTool[] = [
@@ -149,23 +142,23 @@ export class TodoAgent extends BaseAgent {
                 },
                 {
                     name: 'complete_todo',
-                    description: 'Mark a todo as complete. Can accept either a todo ID or a title to search for.',
+                    description: 'Mark a todo as complete. Accepts either a todo ID or a title to search for. When the user mentions a todo by name, pass the title parameter.',
                     inputSchema: {
                         type: 'object',
                         properties: {
                             id: { type: 'string', description: 'Todo ID (if known)' },
-                            title: { type: 'string', description: 'Todo title to search for (if ID not known)' }
+                            title: { type: 'string', description: 'Todo title to search for. Use this when user mentions a todo by name instead of ID.' }
                         }
                     }
                 },
                 {
                     name: 'delete_todo',
-                    description: 'Delete a todo. Can accept either a todo ID or a title to search for.',
+                    description: 'Delete a todo. Accepts either a todo ID or a title to search for. When the user mentions a todo by name, pass the title parameter.',
                     inputSchema: {
                         type: 'object',
                         properties: {
                             id: { type: 'string', description: 'Todo ID (if known)' },
-                            title: { type: 'string', description: 'Todo title to search for (if ID not known)' }
+                            title: { type: 'string', description: 'Todo title to search for. Use this when user mentions a todo by name instead of ID.' }
                         }
                     }
                 }
@@ -175,8 +168,8 @@ export class TodoAgent extends BaseAgent {
             const systemMessage = vscode.LanguageModelChatMessage.User(
                 `You are a todo list assistant. Help users manage their todos using the available tools.\n\n` +
                 `When users ask to create multiple todos, extract all tasks and create them.\n` +
-                `When users ask to complete a todo, use the complete_todo tool with the todo ID.\n` +
-                `When users mention a todo by its title (not ID), first check the list of todos to find the matching ID.\n` +
+                `When users ask to complete or delete a todo by name/title, use the complete_todo or delete_todo tool with the title parameter (not ID).\n` +
+                `When users provide a todo ID, use the id parameter.\n` +
                 `Be friendly and concise in your responses.\n\n` +
                 `Important: Always use the tools provided. Don't just describe what you would do - actually call the tool.`
             );
