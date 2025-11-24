@@ -175,6 +175,23 @@ export class PersistenceManager {
   }
 
   /**
+   * Delete file from global storage
+   */
+  async deleteFromGlobal(filename: string): Promise<void> {
+    const storageUri = this.context.globalStorageUri;
+
+    try {
+      const filePath = vscode.Uri.joinPath(storageUri, filename);
+      await vscode.workspace.fs.delete(filePath);
+
+      this.logger.debug(`Data deleted from global storage: ${filename}`);
+    } catch (error) {
+      this.logger.error(`Failed to delete from global storage: ${filename}`, error);
+      throw error;
+    }
+  }
+
+  /**
    * Clear all workspace storage
    */
   async clearWorkspaceStorage(): Promise<void> {

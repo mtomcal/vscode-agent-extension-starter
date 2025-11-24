@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import { ConfigurationManager, Logger, TelemetryManager } from './utils/index.js';
 import { StateManager, PersistenceManager } from './state/index.js';
-import { ToolRegistry, FileTool, ApiTool } from './tools/index.js';
+import { ToolRegistry, FileTool, ApiTool, TodoOperationsTool } from './tools/index.js';
 import { WorkflowEngine, SampleWorkflow } from './workflows/index.js';
 import { HumanInTheLoopManager, AuditLogger, ApprovalManager } from './governance/index.js';
-import { CopilotAgent } from './agents/index.js';
+import { CopilotAgent, TodoAgent } from './agents/index.js';
 import { AgentDashboardProvider } from './ui/webviews/index.js';
 import { ChatWebviewBridge } from './ui/bridge/index.js';
 
@@ -24,6 +24,7 @@ class ExtensionContext {
   public workflowEngine!: WorkflowEngine;
   public chatBridge!: ChatWebviewBridge;
   public copilotAgent!: CopilotAgent;
+  public todoAgent!: TodoAgent;
   public dashboardProvider!: AgentDashboardProvider;
 
   constructor(public vscodeContext: vscode.ExtensionContext) {}
@@ -156,6 +157,16 @@ async function registerAgents(ctx: ExtensionContext): Promise<void> {
 
   await ctx.copilotAgent.register();
 
+  // Create and register Todo agent
+  ctx.todoAgent = new TodoAgent(
+    ctx.vscodeContext,
+    ctx.toolRegistry,
+    ctx.workflowEngine,
+    ctx.config.getConfig()
+  );
+
+  await ctx.todoAgent.register();
+
   ctx.logger.info('Agents registered');
 }
 
@@ -166,6 +177,7 @@ function registerTools(ctx: ExtensionContext): void {
   // Register built-in tools
   ctx.toolRegistry.register(new FileTool());
   ctx.toolRegistry.register(new ApiTool());
+  ctx.toolRegistry.register(new TodoOperationsTool());
 
   // Track tool registration
   ctx.telemetry.trackEvent('tools.registered', {

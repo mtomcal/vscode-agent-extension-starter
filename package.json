@@ -44,6 +44,12 @@
             "description": "Show current workflow status"
           }
         ]
+      },
+      {
+        "id": "agent.todo",
+        "name": "todo",
+        "description": "Manage your todo list with natural language",
+        "isSticky": false
       }
     ],
     "commands": [
