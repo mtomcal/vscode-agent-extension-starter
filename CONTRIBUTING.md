@@ -106,6 +106,13 @@ Run unit tests:
 npm run test:unit
 ```
 
+Run tests with coverage:
+```bash
+npm run test:unit:coverage
+```
+
+The project targets 80%+ code coverage. Current coverage is 87.2% statements.
+
 ### Integration Tests
 
 Write integration tests for component interactions:

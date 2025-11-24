@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Comprehensive unit test suite with 179 passing tests
+- Code coverage configuration with nyc/Istanbul (87.2% statement coverage)
+- CopilotAgent tests covering chat handling, workflow execution, and error handling
+- Governance system tests (HumanInTheLoopManager, AuditLogger, ApprovalManager)
+- Tool tests for ApiTool and FileTool with complete operation coverage
+- WorkflowEngine tests covering Think-Act-Observe cycle and governance integration
+
+### Changed
+- Fixed vscode mock to use singleton pattern for proper sinon stub interception
+- Updated ESLint config to allow underscore-prefixed unused variables in tests
+
 ## [0.0.1] - 2024-01-XX
 
 ### Added

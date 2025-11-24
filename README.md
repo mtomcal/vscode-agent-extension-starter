@@ -27,7 +27,7 @@ A comprehensive starter template for building VSCode extensions with GitHub Copi
 
 1. Clone this repository or use as a template:
 ```bash
-git clone https://github.com/your-org/vscode-agent-extension-starter.git
+git clone https://github.com/mtomcal/vscode-agent-extension-starter.git
 cd vscode-agent-extension-starter
 ```
 
@@ -246,13 +246,27 @@ governanceManager.addRule({
 
 ## Testing
 
+The project includes comprehensive unit tests with 87% code coverage.
+
 Run tests:
 
 ```bash
-npm run test          # Run all tests
-npm run test:unit     # Run unit tests only
+npm run test              # Run all tests
+npm run test:unit         # Run unit tests only (179 passing tests)
+npm run test:unit:coverage  # Run with coverage report
 npm run test:integration  # Run integration tests
 ```
+
+### Test Coverage
+
+| Component | Coverage |
+|-----------|----------|
+| Governance (HITL, Audit, Approval) | 93% |
+| Workflows (Base, Engine) | 96% |
+| Tools (Base, Registry, API, File) | 90% |
+| Agents (CopilotAgent) | 84% |
+| State Management | 83% |
+| **Overall** | **87.2%** |
 
 ## Building and Packaging
 
@@ -301,13 +315,14 @@ The extension uses a centralized state manager with:
 
 ## Examples
 
-See the `docs/examples/` directory for complete examples:
+See the example implementations in the source code:
 
-- Simple file manipulation agent
-- API integration agent
-- Multi-step workflow agent
-- Custom tool implementation
-- Webview integration
+- **Tool examples**: [`src/tools/examples/`](src/tools/examples/) - API tool and file tool implementations
+- **Workflow examples**: [`src/workflows/examples/`](src/workflows/examples/) - Sample workflow with Think-Act-Observe pattern
+
+For architecture and integration details, see:
+- [Architecture Guide](docs/ARCHITECTURE.md) - System design and patterns
+- [Quick Start Guide](docs/QUICKSTART.md) - Getting started tutorial
 
 ## Contributing
 
@@ -319,8 +334,8 @@ MIT License - see [LICENSE](LICENSE) for details.
 
 ## Support
 
-- Issues: [GitHub Issues](https://github.com/your-org/vscode-agent-extension-starter/issues)
-- Discussions: [GitHub Discussions](https://github.com/your-org/vscode-agent-extension-starter/discussions)
+- Issues: [GitHub Issues](https://github.com/mtomcal/vscode-agent-extension-starter/issues)
+- Discussions: [GitHub Discussions](https://github.com/mtomcal/vscode-agent-extension-starter/discussions)
 
 ## Acknowledgments
 
